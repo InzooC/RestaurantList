@@ -1,6 +1,9 @@
+<img width="1298" alt="截圖 2022-02-28 下午5 17 10" src="https://user-images.githubusercontent.com/98327436/155958195-4ef11e5e-0426-4cbd-9f04-00ad7588ce93.png">
+
 # 關於RestaurantList
 1. 查看所有的餐廳
 2. 查看餐廳詳細資訊
+
 3. 以餐廳名稱或店家類型來搜尋特定餐廳
 
 # 環境建置與需求
