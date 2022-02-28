@@ -19,120 +19,26 @@
 
 <div class="container-sm mt-5">
   <div class="row row-cols-md-3 g-4">
-    <div class="col-sm">
-      <div class="card">
-        <a href="/restaurants/1" class="text-secondary">
-          <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
-            alt="Sababa 沙巴巴中東美食">
-          <div class="card-body">
-            <h6 class="card-title mb-1">Sababa 沙巴巴中東美食</h6>
-            <div class="restaurant-category mb-1">
-              <i class="fas fa-utensils pr-2"></i> 中東料理
-            </div>
-            <span class="badge badge-pill badge-danger font-weight-normal">
-              4.1
-              <i class="fas fa-star fa-xs"></i>
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
 
-    <div class="col-sm">
+    {{#each restaurantList}}
+    <div class="col-4">
       <div class="card">
-        <a href="/restaurants/1" class="text-secondary">
-          <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
-            alt="Sababa 沙巴巴中東美食">
+        <a href="/restaurants/{{this.id}}" class="text-secondary">
+          <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
           <div class="card-body">
-            <h6 class="card-title mb-1">Sababa 沙巴巴中東美食</h6>
+            <h6 class="card-title mb-1">{{this.name}}</h6>
             <div class="restaurant-category mb-1">
-              <i class="fas fa-utensils pr-2"></i> 中東料理
+              <i class="fas fa-utensils pr-2"></i> {{this.category}}
             </div>
-            <span class="badge badge-pill badge-danger font-weight-normal">
-              4.1
+            <span class="badge badge-pill badge-danger fratingont-weight-normal">
+              {{this.rating}}
               <i class="fas fa-star fa-xs"></i>
             </span>
           </div>
         </a>
       </div>
     </div>
-
-    <div class="col-sm">
-      <div class="card">
-        <a href="/restaurants/1" class="text-secondary">
-          <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
-            alt="Sababa 沙巴巴中東美食">
-          <div class="card-body">
-            <h6 class="card-title mb-1">Sababa 沙巴巴中東美食</h6>
-            <div class="restaurant-category mb-1">
-              <i class="fas fa-utensils pr-2"></i> 中東料理
-            </div>
-            <span class="badge badge-pill badge-danger font-weight-normal">
-              4.1
-              <i class="fas fa-star fa-xs"></i>
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card">
-        <a href="/restaurants/1" class="text-secondary">
-          <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
-            alt="Sababa 沙巴巴中東美食">
-          <div class="card-body">
-            <h6 class="card-title mb-1">Sababa 沙巴巴中東美食</h6>
-            <div class="restaurant-category mb-1">
-              <i class="fas fa-utensils pr-2"></i> 中東料理
-            </div>
-            <span class="badge badge-pill badge-danger font-weight-normal">
-              4.1
-              <i class="fas fa-star fa-xs"></i>
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card">
-        <a href="/restaurants/1" class="text-secondary">
-          <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
-            alt="Sababa 沙巴巴中東美食">
-          <div class="card-body">
-            <h6 class="card-title mb-1">Sababa 沙巴巴中東美食</h6>
-            <div class="restaurant-category mb-1">
-              <i class="fas fa-utensils pr-2"></i> 中東料理
-            </div>
-            <span class="badge badge-pill badge-danger font-weight-normal">
-              4.1
-              <i class="fas fa-star fa-xs"></i>
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card">
-        <a href="/restaurants/1" class="text-secondary">
-          <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
-            alt="Sababa 沙巴巴中東美食">
-          <div class="card-body">
-            <h6 class="card-title mb-1">Sababa 沙巴巴中東美食</h6>
-            <div class="restaurant-category mb-1">
-              <i class="fas fa-utensils pr-2"></i> 中東料理
-            </div>
-            <span class="badge badge-pill badge-danger font-weight-normal">
-              4.1
-              <i class="fas fa-star fa-xs"></i>
-            </span>
-          </div>
-        </a>
-      </div>
-    </div>
+    {{/each}}
 
   </div>
-
 </div>
