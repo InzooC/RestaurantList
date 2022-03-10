@@ -53,7 +53,6 @@ app.get('/restaurant/:id/edit', (req, res) => {
 
 app.post('/restaurant/:id/edit', (req, res) => {
   const id = req.params.id
-  // console.log('request', req)
   const name = req.body.name
   const category = req.body.category
   const location = req.body.location
@@ -71,6 +70,32 @@ app.post('/restaurant/:id/edit', (req, res) => {
     .then(() => res.redirect(`/restaurant/${id}`))
     .catch(error => console.log(error))
 })
+
+app.get('/add', (req, res) => { //新增餐廳頁面
+  res.render('add')
+})
+
+app.post('/add', (req, res) => { //從這邊開始寫！！！！！！！！！
+  res.render('index')
+  // const id = req.params.id
+  // const name = req.body.name
+  // const category = req.body.category
+  // const location = req.body.location
+  // const phone = req.body.phone
+  // const description = req.body.description
+  // return Restaurant.findById(id)
+  //   .then(restaurant => {
+  //     restaurant.name = name
+  //     restaurant.category = category
+  //     restaurant.location = location
+  //     restaurant.phone = phone
+  //     restaurant.description = description
+  //     return restaurant.save()
+  //   })
+  //   .then(() => res.redirect(`/restaurant/${id}`))
+  //   .catch(error => console.log(error))
+})
+
 
 // app.get('/search', (req, res) => {
 //   const restaurants = restaurantList.results.filter(restaurant => {

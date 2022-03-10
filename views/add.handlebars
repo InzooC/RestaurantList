@@ -1,14 +1,14 @@
-<h1 class="mb-1 restaurant-show-title">編輯 {{restaurant.name}}餐廳資料</h1>
+<h1 class="mb-1 restaurant-show-title">新增餐廳資料</h1>
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-8 mx-auto">
-      <form action="/restaurant/{{ restaurant._id }}/edit" method="POST">
+    <div class="col-12 col-md-8 mx-auto mb-5">
+      <form action="/add" method="POST">
 
         <div class="mb-3">
           <span class="text-secondary">
             <i class="fas fa-utensils pr-2"></i>
             <label for="name" class="form-label">店名</label>
-            <input type="text" class="form-control" id="name" placeholder="{{restaurant.name}}" name="name"
+            <input type="text" class="form-control" id="name" placeholder="請輸入餐廳名稱" name="name"
               value="{{restaurant.name}}" required />
           </span>
         </div>
@@ -17,7 +17,7 @@
           <span class="text-secondary">
             <i class="fas fa-bookmark"></i>
             <label for="category" class="form-label">類別</label>
-            <input type="text" class="form-control" id="category" placeholder="{{restaurant.category}}" name="category"
+            <input type="text" class="form-control" id="category" placeholder="日本料理、韓式料理、法式餐廳..." name="category"
               value="{{restaurant.category}}" required />
           </span>
         </div>
@@ -26,7 +26,7 @@
           <span class="text-secondary">
             <i class="fas fa-map-marker-alt pr-2"></i>
             <label for="location" class="form-label">地址</label>
-            <input type="text" class="form-control" id="location" placeholder="{{restaurant.location}}" name="location"
+            <input type="text" class="form-control" id="location" placeholder="台北市新生二路..." name="location"
               value="{{restaurant.location}}" required />
           </span>
         </div>
@@ -35,7 +35,7 @@
           <span class="text-secondary">
             <i class="fas fa-mobile-alt pr-2"></i>
             <label for="phone" class="form-label">電話</label>
-            <input type="tel" class="form-control" id="phone" placeholder="{{restaurant.phone}}" name="phone"
+            <input type="tel" class="form-control" id="phone" placeholder="1234567" name="phone"
               value="{{restaurant.phone}}" required />
           </span>
         </div>
@@ -44,8 +44,8 @@
           <span class="text-secondary">
             <i class="fas fa-pencil-alt"></i>
             <label for="description" class="form-label">店家介紹</label>
-            <textarea class="form-control" id="description" rows="3"
-              name="description">{{restaurant.description}}</textarea>
+            <textarea class="form-control" id="description" rows="3" name="請輸入店家特色" placeholder="1234567"
+              required></textarea>
           </span>
         </div>
 
@@ -58,9 +58,6 @@
         </a>
 
       </form>
-
-      <img class="rounded mx-auto d-block mt-3 mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
-        style="max-width: 600px;">
 
     </div>
   </div>
