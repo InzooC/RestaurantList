@@ -110,16 +110,6 @@ app.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
-
-// const restaurants = restaurantList.results.filter(restaurant => {
-//   return restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase().trim()) || restaurant.category.toLowerCase().includes(keyword)
-// })
-
-// const keyword = req.query.keyword
-// res.render('index', { restaurantList: restaurants, keyword: keyword })
-
-
 //start and listen on the express server 
 app.listen(port, () => {
   console.log(`Express is listening on http://localhost:${port}`)
