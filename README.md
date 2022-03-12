@@ -1,5 +1,4 @@
-<img width="1429" alt="RestaurantList image" src="https://user-images.githubusercontent.com/98327436/158002695-5e363daf-d7f4-4ab5-9b81-7d101026ead2.png">
-
+<img width="1393" alt="截圖 2022-03-12 下午12 32 54" src="https://user-images.githubusercontent.com/98327436/158003767-3fe72802-7eb7-44e9-a0e3-02745e71b6e7.png">
 
 # 關於RestaurantList
 1. 查看所有的餐廳
@@ -22,5 +21,5 @@
 2. 下載本專案
 3. 透過終端機進入資料夾，輸入：npm install
 4. 完成npm安裝後，繼續輸入：npm run dev
-5. 若看見"Express is listening on http://localhost:3000"訊息則代表順利運行，打開瀏覽器進入到以下網址 http://localhost:3000
+5. 若看見 Express is listening on http://localhost:3000 訊息則代表順利運行，打開瀏覽器進入到以下網址 http://localhost:3000
 6. 若欲暫停使用 ctrl + c
