@@ -59,6 +59,12 @@
 
       </form>
 
+      <div style="display: inline-block;" class="mt-1">
+        <form action="/restaurant/{{restaurant._id}}/delete" method="POST">
+          <button type="submit" class=" btn btn btn-warning text-white">delete</button>
+        </form>
+      </div>
+
       <img class="rounded mx-auto d-block mt-3 mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
 
