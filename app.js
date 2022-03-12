@@ -28,14 +28,16 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 //setting router
-app.get('/', (req, res) => { //瀏覽全部餐廳
+//瀏覽全部餐廳
+app.get('/', (req, res) => {
   Restaurant.find()//拿出Restaurant model所有東西
     .lean()
     .then(restaurants => res.render('index', { restaurants: restaurants }))
     .catch(error => console.log(error))
 })
 
-app.get('/restaurant/:id', (req, res) => { //瀏覽一家餐廳詳細資訊
+//瀏覽一家餐廳詳細資訊
+app.get('/restaurant/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .lean()
@@ -43,6 +45,7 @@ app.get('/restaurant/:id', (req, res) => { //瀏覽一家餐廳詳細資訊
     .catch(error => console.log(error))
 })
 
+//編輯一家餐廳資訊
 app.get('/restaurant/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -51,6 +54,7 @@ app.get('/restaurant/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//更新餐廳資訊
 app.post('/restaurant/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name
@@ -71,39 +75,50 @@ app.post('/restaurant/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.get('/add', (req, res) => { //新增餐廳頁面
+//新增餐廳頁面
+app.get('/add', (req, res) => {
   res.render('add')
 })
 
-app.post('/add', (req, res) => { //從這邊開始寫！！！！！！！！！
-  res.render('index')
-  // const id = req.params.id
-  // const name = req.body.name
-  // const category = req.body.category
-  // const location = req.body.location
-  // const phone = req.body.phone
-  // const description = req.body.description
-  // return Restaurant.findById(id)
-  //   .then(restaurant => {
-  //     restaurant.name = name
-  //     restaurant.category = category
-  //     restaurant.location = location
-  //     restaurant.phone = phone
-  //     restaurant.description = description
-  //     return restaurant.save()
-  //   })
-  //   .then(() => res.redirect(`/restaurant/${id}`))
-  //   .catch(error => console.log(error))
+//新增一間餐廳資訊
+app.post('/add', (req, res) => {
+  const newRestaurant = req.body
+  Restaurant.create(newRestaurant)
+    .then(() => {
+      console.log('mongodb create a new data!')
+      res.redirect('/')
+    })
+    .catch(error => console.log(error))
+})
+
+//搜尋特定餐廳
+app.get('/search', (req, res) => {
+  const rawKeyword = req.query.keyword
+  const keyword = req.query.keyword.toLowerCase().trim()
+  if (!keyword) {
+    res.redirect('/')
+  }
+  Restaurant.find()
+    .lean()
+    .then(restaurantData => {
+      const filterRestaurants = restaurantData.filter(
+        data =>
+          data.name.toLowerCase().includes(keyword) || data.category.toLowerCase().includes(keyword)
+      )
+      res.render('index', { restaurants: filterRestaurants, rawKeyword })
+    })
+    .catch(error => console.log(error))
 })
 
 
-// app.get('/search', (req, res) => {
-//   const restaurants = restaurantList.results.filter(restaurant => {
-//     return restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase().trim()) || restaurant.category.toLowerCase().includes(req.query.keyword.toLowerCase().trim())
-//   })
-//   const keyword = req.query.keyword
-//   res.render('index', { restaurantList: restaurants, keyword: keyword })
+
+// const restaurants = restaurantList.results.filter(restaurant => {
+//   return restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase().trim()) || restaurant.category.toLowerCase().includes(keyword)
 // })
+
+// const keyword = req.query.keyword
+// res.render('index', { restaurantList: restaurants, keyword: keyword })
+
 
 //start and listen on the express server 
 app.listen(port, () => {
