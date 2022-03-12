@@ -34,7 +34,10 @@ app.get('/', (req, res) => {
   Restaurant.find()//拿出Restaurant model所有東西
     .lean()
     .then(restaurants => res.render('index', { restaurants: restaurants }))
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法瀏覽首頁' })
+    })
 })
 
 //瀏覽一家餐廳詳細資訊
@@ -43,7 +46,10 @@ app.get('/restaurant/:id', (req, res) => {
   return Restaurant.findById(id)
     .lean()
     .then((restaurant) => res.render('show', { restaurant: restaurant }))
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法瀏覽此餐廳資訊' })
+    })
 })
 
 //編輯一家餐廳資訊
@@ -52,7 +58,10 @@ app.get('/restaurant/:id/edit', (req, res) => {
   return Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('edit', { restaurant: restaurant }))
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法編輯此餐廳資訊' })
+    })
 })
 
 //更新餐廳資訊
@@ -73,7 +82,10 @@ app.post('/restaurant/:id/edit', (req, res) => {
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurant/${id}`))
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法新增餐廳資訊' })
+    })
 })
 
 //新增餐廳頁面
@@ -89,7 +101,10 @@ app.post('/add', (req, res) => {
       console.log('mongodb create a new data!')
       res.redirect('/')
     })
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法新增餐廳資訊' })
+    })
 })
 
 //搜尋特定餐廳
@@ -108,7 +123,10 @@ app.get('/search', (req, res) => {
       )
       res.render('index', { restaurants: filterRestaurants, rawKeyword })
     })
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法搜尋餐廳資訊' })
+    })
 })
 
 //刪除特定餐廳資料
@@ -117,7 +135,10 @@ app.post('/restaurant/:id/delete', (req, res) => {
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(err => {
+      console.error(error)
+      res.render('errorPage', { error: '無法刪除餐廳資訊' })
+    })
 })
 
 

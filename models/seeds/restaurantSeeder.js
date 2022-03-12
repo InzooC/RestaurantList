@@ -14,6 +14,8 @@ db.once('open', () => {
   Restaurant.create(restaurantList)
     .then(() => {
       console.log('mongodb connected!')
+      db.close()
     })
     .catch(error => console.log(error))
+    .finally(() => process.exit())
 })

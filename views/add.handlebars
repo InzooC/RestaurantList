@@ -15,10 +15,26 @@
 
         <div class="mb-3">
           <span class="text-secondary">
+            <i class="fas fa-utensils pr-2"></i>
+            <label for="name_en" class="form-label">英文店名</label>
+            <input type="text" class="form-control" id="name_en" placeholder="請輸入餐廳名稱" name="name_en"
+              value="{{restaurant.name}}" required />
+          </span>
+        </div>
+
+        <div class="mb-3">
+          <span class="text-secondary">
             <i class="fas fa-bookmark"></i>
             <label for="category" class="form-label">類別</label>
             <input type="text" class="form-control" id="category" placeholder="日本料理、韓式料理、法式餐廳..." name="category"
               value="{{restaurant.category}}" required />
+          </span>
+        </div>
+
+        <div class="mb-3">
+          <span class="text-secondary">
+            <label for="image" class="form-label">圖片連結</label>
+            <input type="url" class="form-control" id="image" name="image" />
           </span>
         </div>
 
@@ -42,6 +58,15 @@
 
         <div class="mb-3">
           <span class="text-secondary">
+            <i class="fas fa-mobile-alt pr-2"></i>
+            <label for="google_map" class="form-label">google連結</label>
+            <input type="url" class="form-control" id="google_map" placeholder="1234567" name="google_map"
+              value="{{restaurant.phone}}" />
+          </span>
+        </div>
+
+        <div class="mb-3">
+          <span class="text-secondary">
             <i class="fas fa-star fa-xs"></i>
             <label for="rating" class="form-label">評分(0-5)</label>
             <input type="number" class="form-control" placeholder="0-5" id="rating" min="0" max="5" step="0.1"
@@ -58,12 +83,7 @@
           </span>
         </div>
 
-        <div class="mb-3">
-          <span class="text-secondary">
-            <label for="image" class="form-label">圖片連結</label>
-            <input type="url" class="form-control" id="image" name="image" required />
-          </span>
-        </div>
+
 
         <button type="submit" class="btn btn-primary">Save</button>
 
