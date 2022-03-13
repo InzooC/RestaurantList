@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-8 mx-auto">
-      <form action="/restaurant/{{ restaurant._id }}/edit" method="POST">
+      <form action="/restaurant/{{ restaurant._id }}?_method=PUT" method="POST">
 
         <div class="mb-3">
           <span class="text-secondary">
@@ -60,7 +60,7 @@
       </form>
 
       <div style="display: inline-block;" class="mt-1">
-        <form action="/restaurant/{{restaurant._id}}/delete" method="POST">
+        <form action="/restaurant/{{restaurant._id}}?_method=DELETE" method="POST">
           <button type="submit" class=" btn btn btn-warning text-white">delete</button>
         </form>
       </div>

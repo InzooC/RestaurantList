@@ -50,7 +50,7 @@
               <a href="./restaurant/{{this._id}}/edit">Edit</a>
               <a href="./restaurant/{{this._id}}">Detail</a>
 
-              <form action="/restaurant/{{this._id}}/delete" method="POST" style="display: inline;">
+              <form action="/restaurant/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn btn-warning btn-sm text-white">delete</button>
               </form>
 

@@ -1,12 +1,13 @@
 const express = require('express')
-const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const restaurant = require('./models/restaurant')
+// const restaurant = require('./models/restaurant')
 const Restaurant = require('./models/restaurant')//載入Restaurant model
-const res = require('express/lib/response')
+// const res = require('express/lib/response')
+const methodOverride = require('method-override')
+
 
 mongoose.connect('mongodb://localhost/restaurant')
 
@@ -19,6 +20,8 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+const app = express()
+
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -26,7 +29,7 @@ app.set('view engine', 'handlebars')
 //setting static files
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(methodOverride('_method'))
 
 //setting router
 //瀏覽全部餐廳
@@ -53,7 +56,7 @@ app.get('/restaurant/:id', (req, res) => {
     })
 })
 
-//編輯一家餐廳資訊
+//編輯一家餐廳資訊的頁面
 app.get('/restaurant/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -61,18 +64,14 @@ app.get('/restaurant/:id/edit', (req, res) => {
     .then(restaurant => res.render('edit', { restaurant: restaurant }))
     .catch(err => {
       console.error(error)
-      res.render('errorPage', { error: '無法編輯此餐廳資訊' })
+      res.render('errorPage', { error: '無法呈現編輯頁面' })
     })
 })
 
 //更新餐廳資訊
-app.post('/restaurant/:id/edit', (req, res) => {
+app.put('/restaurant/:id', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
-  const category = req.body.category
-  const location = req.body.location
-  const phone = req.body.phone
-  const description = req.body.description
+  const { name, category, location, phone, description } = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
@@ -131,7 +130,7 @@ app.get('/search', (req, res) => {
 })
 
 //刪除特定餐廳資料
-app.post('/restaurant/:id/delete', (req, res) => {
+app.delete('/restaurant/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
