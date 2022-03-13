@@ -18,10 +18,10 @@ router.get('/', (req, res) => {
 router.get('/search', (req, res) => {
   const rawKeyword = req.query.keyword
   const keyword = req.query.keyword.toLowerCase().trim()
-  if (!keyword) {
+  if (!rawKeyword) {
     res.redirect('/')
   }
-  Restaurant.find()
+  Restaurant.find({})
     .lean()
     .then(restaurantData => {
       const filterRestaurants = restaurantData.filter(
