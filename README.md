@@ -11,10 +11,11 @@
 # 環境建置與需求
 1. Node.js 16.14.0
 2. Express: 4.16.4
-3. Express-handlebars": 3.0.0
+3. Express-handlebars: 3.0.0
 4. Bootstrap 5.1.3
-5. font-awesome: 4.7.0
-6. mongoose: 5.9.7
+5. Font-awesome: 4.7.0
+6. Mongoose: 5.9.7
+7. Method-override: 3.0.0
 
 # 安裝步驟
 1. 安裝node.js 與 npm
