@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Restaurant.find()//拿出Restaurant model所有東西
     .lean()
+    .sort({ name: 'asc' })
     .then(restaurants => res.render('index', { restaurants: restaurants }))
     .catch(err => {
       console.error(error)
