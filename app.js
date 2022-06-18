@@ -5,6 +5,10 @@ const Restaurant = require('./models/restaurant')//載入Restaurant model
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 //資料庫連線
 require('./config/mongoose')
 

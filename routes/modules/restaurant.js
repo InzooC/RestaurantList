@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
       console.log('mongodb create a new data!')
       res.redirect('/')
     })
-    .catch(err => {
+    .catch(error => {
       console.error(error)
       res.render('errorPage', { error: '無法新增餐廳資訊' })
     })
@@ -60,7 +60,7 @@ router.put('/:id', (req, res) => {
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurant/${id}`))
-    .catch(err => {
+    .catch(error => {
       console.error(error)
       res.render('errorPage', { error: '無法新增餐廳資訊' })
     })
@@ -72,7 +72,7 @@ router.delete('/:id', (req, res) => {
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
-    .catch(err => {
+    .catch(error => {
       console.error(error)
       res.render('errorPage', { error: '無法刪除餐廳資訊' })
     })

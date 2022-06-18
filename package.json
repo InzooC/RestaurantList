@@ -14,10 +14,17 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0",
-    "express": "^4.16.4",
-    "express-handlebars": "^3.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.2",
+    "express-session": "^1.17.1",
     "font-awesome": "^4.7.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.9.7"
+    "mongodb": "^4.4.1",
+    "mongoose": "^5.9.7",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0"
   }
 }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/restaurant')
-//取得資料庫連線狀態
+const MONGODB_URI = process.env.MONGODB_URI
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error!')
