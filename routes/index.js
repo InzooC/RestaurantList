@@ -4,11 +4,11 @@ const router = express.Router() //引入express的路由器
 //引入home模組
 const home = require('./modules/home')
 const restaurant = require('./modules/restaurant')
-const user = require('./modules/user')
+const user = require('./modules/users')
 
 //網址符合  /  的req導向home模組
 router.use('/restaurant', restaurant)
-router.use('/user', user)
+router.use('/users', user)
 router.use('/', home)
 
 
