@@ -1,14 +1,14 @@
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const Restaurant = require('./models/restaurant')//載入Restaurant model
 const methodOverride = require('method-override')
+
 const routes = require('./routes/index')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-
 //資料庫連線
 require('./config/mongoose')
 
@@ -18,6 +18,13 @@ const port = 3000
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'thisIsMySecret'
+  // , resave: false,
+  // saveUninitialized: true
+}))
+
 
 //setting static files
 app.use(express.static('public'))
