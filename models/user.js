@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
 const userSchema = new Schema({
-  id: {
-    type: Number,
-    require: true
-  },
   name: {
     type: String,
     require: false
@@ -24,7 +19,7 @@ const userSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Restaurant', restaurantSchema)
+module.exports = mongoose.model('User', userSchema)
 
 // email: user1@example.com
 // password: 12345678
