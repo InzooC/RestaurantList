@@ -5,11 +5,12 @@ const router = express.Router() //引入express的路由器
 const home = require('./modules/home')
 const restaurant = require('./modules/restaurant')
 const user = require('./modules/users')
+const { authenticator } = require('../middleware/auth')
 
 //網址符合  /  的req導向home模組
-router.use('/restaurant', restaurant)
 router.use('/users', user)
-router.use('/', home)
+router.use('/restaurant', authenticator, restaurant)
+router.use('/', authenticator, home)
 
 
 //匯出路由器
