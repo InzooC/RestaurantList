@@ -1,12 +1,18 @@
 const express = require('express') //引入express
 const router = express.Router() //引入express的路由器
 const User = require('../../models/user')
+const passport = require('passport')
 const bcrypt = require('bcryptjs')
 
 //定義首頁路由
 router.get('/login', (req, res) => {
   res.render('login')
 })
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/register'
+}))
 
 router.get('/register', (req, res) => {
   res.render('register')
@@ -40,8 +46,8 @@ router.post(('/register'), (req, res) => {
         email,
         password
       })
-      .then(res.redirect('/users/login'))
-      .catch(err => console.log(err))
+        .then(res.redirect('/users/login'))
+        .catch(err => console.log(err))
 
       //還沒有成功加入雜湊密碼
       // bcrypt.getSalt(10)
