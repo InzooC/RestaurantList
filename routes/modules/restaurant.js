@@ -10,10 +10,11 @@ router.get('/add', (req, res) => {
 
 //新增一間餐廳資訊
 router.post('/', (req, res) => {
-  const newRestaurant = req.body
-  Restaurant.create(newRestaurant)
+  const userId = req.user._id
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description, userId })
     .then(() => {
-      console.log('mongodb create a new data!')
       res.redirect('/')
     })
     .catch(error => {
@@ -24,10 +25,11 @@ router.post('/', (req, res) => {
 
 //瀏覽一家餐廳詳細資訊
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
-    .then((restaurant) => res.render('show', { restaurant: restaurant }))
+    .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => {
       console.log(error)
       res.render('errorPage', { error: '無法瀏覽此餐廳資訊' })
@@ -36,8 +38,9 @@ router.get('/:id', (req, res) => {
 
 //編輯一家餐廳資訊的頁面
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant: restaurant }))
     .catch(err => {
@@ -48,9 +51,10 @@ router.get('/:id/edit', (req, res) => {
 
 //更新餐廳資訊
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const { name, category, location, phone, description } = req.body
-  return Restaurant.findById(id)
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = name
       restaurant.category = category
@@ -59,7 +63,7 @@ router.put('/:id', (req, res) => {
       restaurant.description = description
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurant/${id}`))
+    .then(() => res.redirect(`/restaurant/${_id}`))
     .catch(error => {
       console.error(error)
       res.render('errorPage', { error: '無法新增餐廳資訊' })
@@ -68,8 +72,9 @@ router.put('/:id', (req, res) => {
 
 //刪除特定餐廳資料
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => {

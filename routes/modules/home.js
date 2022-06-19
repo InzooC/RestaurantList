@@ -5,7 +5,8 @@ const Restaurant = require('../../models/restaurant')//載入Restaurant model
 
 //定義首頁路由
 router.get('/', (req, res) => {
-  Restaurant.find()//拿出Restaurant model所有東西
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .sort({ name: 'asc' })
     .then(restaurants => res.render('index', { restaurants: restaurants }))
@@ -13,6 +14,15 @@ router.get('/', (req, res) => {
       console.error(error)
       res.render('errorPage', { error: '無法瀏覽首頁' })
     })
+
+  // Restaurant.find()//拿出Restaurant model所有東西
+  //   .lean()
+  //   .sort({ name: 'asc' })
+  //   .then(restaurants => res.render('index', { restaurants: restaurants }))
+  //   .catch(err => {
+  //     console.error(error)
+  //     res.render('errorPage', { error: '無法瀏覽首頁' })
+  //   })
 })
 
 router.get('/search', (req, res) => {
