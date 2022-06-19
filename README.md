@@ -1,4 +1,6 @@
-<img width="1215" alt="restaurant" src="https://user-images.githubusercontent.com/98327436/158052156-5294366e-f3b4-47fd-a4b5-7dd24c252ec5.png">
+<img width="1428" alt="截圖 2022-06-19 下午11 55 05" src="https://user-images.githubusercontent.com/98327436/174489721-4ebeb78f-3b55-4c74-bfaa-917a81e9c96c.png">
+<img width="1428" alt="截圖 2022-06-19 下午11 54 52" src="https://user-images.githubusercontent.com/98327436/174489727-e0ecee70-b7c1-445a-83b3-c504034390bc.png">
+
 
 # 關於RestaurantList
 1. 使用email註冊帳號
@@ -36,6 +38,6 @@
 3. 透過終端機進入資料夾，輸入：npm install
 4. 將.env.example檔修改為.env檔，並更改成適當的環境參數
 5.  輸入：npm run seed 來建立種子資料
-4. 輸入：npm run start 啟動伺服器
-5. 若看見 Express is listening on http://localhost:3000 訊息則代表順利運行，打開瀏覽器進入到以下網址 http://localhost:3000
-6. 若欲暫停使用 ctrl + c
+6. 輸入：npm run start 啟動伺服器
+7. 若看見 Express is listening on http://localhost:3000 訊息則代表順利運行，打開瀏覽器進入到以下網址 http://localhost:3000
+8. 若欲暫停使用 ctrl + c
