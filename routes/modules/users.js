@@ -64,6 +64,10 @@ router.post(('/register'), (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.get('/logout', (req, res) => {
+  req.logout() //Passport.js提供的函示
+  res.redirect('/users/login')
+})
 
 //匯出路由器
 module.exports = router
