@@ -2,6 +2,9 @@
   <div class="col-md-6 m-auto">
     <div class="card-body">
       <h2 class="card-title text-center">註冊</h2>
+
+      {{> message}}
+
       <form action="/users/register" method="POST">
         <div class="form-group">
           <label for="name">姓名</label>
@@ -19,9 +22,10 @@
         </div>
         <div class="form-group mt-3 mb-3">
           <label for="confirmPassword">再輸入一次密碼</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="*****">
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="*****"
+            value="{{confirmPassword}}">
         </div>
-        <div class="text-center">
+        <div class=" text-center">
           <button type="submit" class="btn btn-outline-secondary">送出資料</button>
         </div>
       </form>

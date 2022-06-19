@@ -11,7 +11,8 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/users/register'
+  failureRedirect: '/users/login',
+  failureFlash: true
 }))
 
 router.get('/register', (req, res) => {
@@ -20,7 +21,7 @@ router.get('/register', (req, res) => {
 
 router.post(('/register'), (req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  const errors = []  //errors功能還沒寫
+  const errors = []
   if (!email || !password || !confirmPassword) {
     errors.push({ massage: 'email ＆ 密碼都需要填寫' })
   }
@@ -29,7 +30,7 @@ router.post(('/register'), (req, res) => {
   }
   if (errors.length) {
     return res.render('register', {
-      errors, name, email, password
+      errors, name, email, password, confirmPassword
     })
   }
 
@@ -65,7 +66,8 @@ router.post(('/register'), (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  req.logout() //Passport.js提供的函示
+  req.logout()
+  req.flash('success_msg', '你已經成功登出。')
   res.redirect('/users/login')
 })
 

@@ -2,16 +2,19 @@
   <div class="col-md-6 m-auto">
     <div class="card-body">
       <h2 class="card-title text-center">登入</h2>
+
+      {{> message}}
+
       <form action="/users/login" method="POST">
         <div class="form-group mt-3">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com"
-            value="{{email}}">
+            value="{{email}}" required>
         </div>
         <div class="form-group mt-3  mb-3">
           <label for="password">密碼</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="*****"
-            value="{{password}}">
+            value="{{password}}" required>
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-outline-secondary">送出資料</button>
