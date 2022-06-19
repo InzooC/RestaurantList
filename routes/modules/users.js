@@ -1,8 +1,8 @@
-const express = require('express') //引入express
-const router = express.Router() //引入express的路由器
-const User = require('../../models/user')
+const express = require('express')
+const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
+const User = require('../../models/user')
 
 //定義首頁路由
 router.get('/login', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/register', (req, res) => {
   res.render('register')
 })
 
-router.post(('/register'), (req, res) => {
+router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
   const errors = []
   if (!email || !password || !confirmPassword) {
@@ -38,31 +38,30 @@ router.post(('/register'), (req, res) => {
     .then(user => {
       if (user) {
         errors.push({ massage: '這個email已註冊過' })
-        res.render('register', {
+        return res.render('register', {
           errors, name, email, password
         })
       }
-      return User.create({
-        name,
-        email,
-        password
-      })
-        .then(res.redirect('/users/login'))
-        .catch(err => console.log(err))
+      // return User.create({
+      //   name,
+      //   email,
+      //   password
+      // })
+      //   .then(res.redirect('/users/login'))
+      //   .catch(err => console.log(err))
 
       //還沒有成功加入雜湊密碼
-      // bcrypt.getSalt(10)
-      //   .then(salt => bcrypt.hash(password, salt))
-      //   .then(hash => User.create({
-      //     name,
-      //     email,
-      //     password: hash
-      //   })
-      //     .then(res.redirect('/users/login'))
-      //     .catch(err => console.log(err))
-      //   )
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({
+          name,
+          email,
+          password: hash
+        }))
+        .then(res.redirect('/users/login'))
+        .catch(err => console.log(err))
     })
-    .catch(err => console.log(err))
 })
 
 router.get('/logout', (req, res) => {
