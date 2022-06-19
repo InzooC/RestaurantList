@@ -42,15 +42,6 @@ router.post('/register', (req, res) => {
           errors, name, email, password
         })
       }
-      // return User.create({
-      //   name,
-      //   email,
-      //   password
-      // })
-      //   .then(res.redirect('/users/login'))
-      //   .catch(err => console.log(err))
-
-      //還沒有成功加入雜湊密碼
       return bcrypt
         .genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
